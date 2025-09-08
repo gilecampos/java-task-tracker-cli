@@ -1,27 +1,38 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/java
 {
-	"name": "Java",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/java:1-21-bullseye",
+    "name": "Java Secure DevContainer",
 
-	"features": {
-		"ghcr.io/devcontainers/features/java:1": {
-			"version": "none",
-			"installMaven": "false",
-			"installGradle": "false"
-		}
-	}
+    // Use a imagem oficial de Java
+    "image": "mcr.microsoft.com/devcontainers/java:1-21-bullseye",
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+    // Recursos opcionais do container
+    "features": {
+        "ghcr.io/devcontainers/features/java:1": {
+            "version": "none",        // usa a versão da imagem
+            "installMaven": "false",  // não instala Maven
+            "installGradle": "false"  // não instala Gradle
+        }
+    },
 
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "java -version",
+    // Monta a pasta do projeto do Windows dentro do container
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+    ],
 
-	// Configure tool-specific properties.
-	// "customizations": {},
+    // Expõe portas do container para o host
+    "forwardPorts": [8080],
 
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+    // Comandos que rodam depois que o container é criado
+    "postCreateCommand": "java -version",
+
+    // Configurações do VSCode dentro do container
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscjava.vscode-java-pack"
+            ]
+        }
+    },
+ 
+    // Define o usuário que será usado dentro do container
+    "remoteUser": "root"
 }
