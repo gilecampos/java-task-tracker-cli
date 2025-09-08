@@ -9,7 +9,13 @@ public class TaskCLI {
 
 		switch (commands) {
 			case "add":
-				System.out.println("Adding a new task...");
+				if(args.length < 2) {
+					System.out.println("Error: Task description is required for 'add' command.");
+					return;
+				}
+				String description = args[1];
+				Task tarefa = new Task(1, description);
+				System.out.println(tarefa.toString());
 				break;
 			case "list":
 				System.out.println("Listing all tasks...");
