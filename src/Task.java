@@ -1,17 +1,19 @@
+import java.time.LocalDateTime;
+
 public class Task {
   public enum Status { TODO, IN_PROGRESS, DONE }
   private int id;
   private String description; 
   private Status status;
-  private java.util.Date createdAt;
-  private java.util.Date updatedAt;
+  private LocalDateTime createdAt;
+  private LocalDateTime updatedAt;
 
   public Task(int id, String description) {
     this.id = id;
     this.description = description;
     this.status = Status.TODO;
-    this.createdAt = new java.util.Date();
-    this.updatedAt = new java.util.Date();
+    this.createdAt = LocalDateTime.now();
+    this.updatedAt = LocalDateTime.now();
   }
 
   @Override
